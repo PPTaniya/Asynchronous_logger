@@ -51,37 +51,37 @@ g++ -std=c++11 -pthread main.cpp -o async_logger
 ---
 ## ▶️ Usage Example
 logger.log(AsyncLogger::Level::INFO, "Hello from worker thread!");
----
+
 ## Sample Output
 12:30:45 [ INFO ]  [ TID 140735 ] worker 1 iteration 1
 12:30:45 [ INFO ]  [ TID 140736 ] worker 2 iteration 1
----
+
 ## 🧵 Multithreading Demo
 
 The example program creates two worker threads:
   thread t1(user_worker, 1);
   thread t2(user_worker, 2);
 Each thread logs 10 messages asynchronously.
----
+
 ## 🛑 Shutdown Behavior
-logger.stop() signals the worker thread to stop
-Ensures all queued messages are processed before exiting
-Automatically called in the destructor as a safeguard
+  logger.stop() signals the worker thread to stop
+  Ensures all queued messages are processed before exiting
+  Automatically called in the destructor as a safeguard
 
 ## ⚠️ Notes & Limitations
-Uses std::localtime, which is not thread-safe
-Logs are printed only to stdout (no file logging yet)
-No log filtering by level (all messages are processed)
-Queue is unbounded (may grow under heavy load)
+  Uses std::localtime, which is not thread-safe
+  Logs are printed only to stdout (no file logging yet)
+  No log filtering by level (all messages are processed)
+  Queue is unbounded (may grow under heavy load)
 
 ## 🔧 Possible Improvements
-Add file output support
-Implement log level filtering
-Replace std::localtime with a thread-safe alternative
-Add log rotation
-Use a bounded queue to prevent memory growth
-Support formatted logging (like printf or fmt)
+  Add file output support
+  Implement log level filtering
+  Replace std::localtime with a thread-safe alternative
+  Add log rotation
+  Use a bounded queue to prevent memory growth
+  Support formatted logging (like printf or fmt)
 
 ## 📜 License
-This project is open-source and free to use for learning and development purposes.
+  This project is open-source and free to use for learning and development purposes.
 
